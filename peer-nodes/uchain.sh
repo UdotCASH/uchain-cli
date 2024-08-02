@@ -37,8 +37,9 @@ if [ "$1" = "run" ]; then
         fi
     elif [ "$2" = "beacon" ]; then
         if [ "$3" = "1" ]; then
+            export PEER="/ip4/172.81.179.112/tcp/13000/p2p/16Uiu2HAmBVw7TvT3r5VgpvuVHcPfABSySaFExhswMAFob7caT8KE"
             cd devnet &&
-            ./beacon-chain --datadir beacondata --min-sync-peers 0 --genesis-state genesis.ssz --bootstrap-node= --interop-eth1data-votes --chain-config-file config.yml --contract-deployment-block 0 --chain-id 32382 --accept-terms-of-use --jwt-secret jwt.hex --suggested-fee-recipient 0x123463a4B065722E99115D6c222f267d9cABb524 --minimum-peers-per-subnet 0 --enable-debug-rpc-endpoints --execution-endpoint gethdata/geth.ipc --enable-upnp --p2p-host-ip 172.81.182.135
+            ./beacon-chain --datadir beacondata --min-sync-peers 1 --genesis-state genesis.ssz --bootstrap-node= --interop-eth1data-votes --chain-config-file config.yml --contract-deployment-block 0 --chain-id 32382 --accept-terms-of-use --jwt-secret jwt.hex --suggested-fee-recipient 0x123463a4B065722E99115D6c222f267d9cABb524 --minimum-peers-per-subnet 0 --enable-debug-rpc-endpoints --execution-endpoint gethdata/geth.ipc  --enable-upnp --p2p-host-ip $(curl icanhazip.com) --peer=$PEER
             echo "Running beacon command 1"
         elif [ "$3" = "2" ]; then
             cd devnet && 

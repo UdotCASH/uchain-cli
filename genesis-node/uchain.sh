@@ -14,8 +14,12 @@ if [ "$1" = "run" ]; then
     if [ "$2" = "geth" ]; then
         if [ "$3" = "1" ]; then
             # Run geth command 1
-            cd devnet &&
-	    ./geth --http --http.api eth,net,web3,admin,txpool --ws --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3
+            cd devnet
+            # Initialize the datadir with the genesis file
+            ./geth --datadir=gethdata init genesis.json
+	        # ./geth --http --http.vhosts "*" --http.addr 0.0.0.0 --http.api eth,net,web3,admin,txpool --ws --ws.addr 0.0.0.0 --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3 --nodiscover 
+
+            ./geth --http --http.api eth,net,web3,admin,txpool --ws --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3 
 
             echo "Running geth command 1"
         elif [ "$3" = "2" ]; then
@@ -38,7 +42,7 @@ if [ "$1" = "run" ]; then
     elif [ "$2" = "beacon" ]; then
         if [ "$3" = "1" ]; then
             cd devnet &&
-            ./beacon-chain --datadir beacondata --min-sync-peers 1 --genesis-state genesis.ssz --bootstrap-node= --interop-eth1data-votes --chain-config-file config.yml --contract-deployment-block 0 --chain-id 32382 --accept-terms-of-use --jwt-secret jwt.hex --suggested-fee-recipient 0x123463a4B065722E99115D6c222f267d9cABb524 --minimum-peers-per-subnet 0 --enable-debug-rpc-endpoints --execution-endpoint gethdata/geth.ipc --enable-upnp --p2p-host-ip $(curl icanhazip.com)
+            ./beacon-chain --datadir beacondata  --genesis-state genesis.ssz --min-sync-peers 0 --bootstrap-node= --interop-eth1data-votes --chain-config-file config.yml --contract-deployment-block 0 --chain-id 32382 --accept-terms-of-use --jwt-secret jwt.hex --suggested-fee-recipient 0x123463a4B065722E99115D6c222f267d9cABb524 --minimum-peers-per-subnet 0 --enable-debug-rpc-endpoints --execution-endpoint gethdata/geth.ipc  --enable-upnp --p2p-host-ip $(curl icanhazip.com)  --min-sync-peers 1
             echo "Running beacon command 1"
         elif [ "$3" = "2" ]; then
             cd devnet && 

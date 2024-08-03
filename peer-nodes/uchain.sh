@@ -15,7 +15,8 @@ if [ "$1" = "run" ]; then
         if [ "$3" = "1" ]; then
             # Run geth command 1
             cd devnet &&
-	    ./geth --http --http.api eth,net,web3,admin,txpool --ws --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3
+            ./geth --datadir=gethdata init genesis.json
+	        ./geth --http --http.api eth,net,web3,admin,txpool --ws --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3 --nodiscover true
 
             echo "Running geth command 1"
         elif [ "$3" = "2" ]; then

@@ -50,7 +50,7 @@ else
 fi
 
 # Generate the genesis file using prysmctl
-./prysmctl testnet generate-genesis --fork deneb --num-validators 64 --genesis-time-delay 90 --chain-config-file config.yml --geth-genesis-json-in genesis.json  --geth-genesis-json-out genesis.json --output-ssz genesis.ssz
+./prysmctl testnet generate-genesis --fork deneb --num-validators 64 --genesis-time-delay 30 --chain-config-file config.yml --geth-genesis-json-in genesis.json  --geth-genesis-json-out genesis.json --output-ssz genesis.ssz
 
 # Call the geth command and import the account with the password "yay"
 echo -e "yay\nyay" | ./geth --datadir=gethdata account import secret.txt

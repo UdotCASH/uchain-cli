@@ -20,7 +20,7 @@ if [ "$1" = "run" ]; then
             ./geth --datadir=gethdata init genesis.json
 
             # Working
-	        ./geth --http --http.vhosts "*" --http.addr 0.0.0.0 --http.api eth,net,web3,admin,txpool --ws --ws.addr 0.0.0.0 --ws.api eth,net,web3 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3 --nodiscover
+	        ./geth --http --http.vhosts "*" --http.addr 0.0.0.0 --http.api eth,net,web3,admin,txpool --ws --ws.addr 0.0.0.0 --ws.api eth,net,web3 --authrpc.addr 0.0.0.0 --authrpc.jwtsecret jwt.hex --datadir gethdata --syncmode full --allow-insecure-unlock --unlock 0x123463a4b065722e99115d6c222f267d9cabb524 --verbosity 3 --nodiscover
 
             # Prysm command
 

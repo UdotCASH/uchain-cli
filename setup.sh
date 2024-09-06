@@ -17,7 +17,7 @@ CGO_CFLAGS="-O2 -D__BLST_PORTABLE__" go build -o=../prysmctl ./cmd/prysmctl
 cd ..
 
 # Clone the go-ethereum repository and build the geth binary
-git clone https://github.com/ethereum/go-ethereum && cd go-ethereum
+git clone https://github.com/ethereum/go-ethereum.git && cd go-ethereum && git checkout tags/v1.13.14 -b v1.13.14
 make geth
 cp ./build/bin/geth ../geth
 cd ..

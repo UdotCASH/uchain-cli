@@ -44,7 +44,8 @@ run_beacon() {
                            --genesis-state genesis.ssz --chain-config-file config.yml \
                            --execution-endpoint gethdata/geth.ipc --accept-terms-of-use \
                            --jwt-secret jwt.hex --suggested-fee-recipient 0x123463a4b065722e99115d6c222f267d9cabb524 \
-                           --enable-debug-rpc-endpoints --p2p-host-ip 172.81.179.112
+                           --enable-debug-rpc-endpoints --p2p-host-ip 172.81.179.112 \
+                           --chain-id 32382
             ;;
         2|3)
             cd devnet &&
@@ -56,7 +57,9 @@ run_beacon() {
                            --execution-endpoint gethdata2/geth.ipc --peer=$PEER \
                            --p2p-udp-port "1200$1" --p2p-tcp-port "1300$1" \
                            --grpc-gateway-port "350$1" --rpc-port "400$1" \
-                           --clear-db --enable-upnp --p2p-host-ip 172.81.182.135
+                           --clear-db --enable-upnp --p2p-host-ip 172.81.182.135 \
+                           --chain-id 32382
+
             ;;
         *)
             echo "Invalid beacon command number"
